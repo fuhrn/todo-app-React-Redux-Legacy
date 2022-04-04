@@ -9,6 +9,24 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>React Todo App with Redux - Legacy</p>
       </header>
+      <div className="Todo-App">
+        <form>
+          <input type="text" />
+        </form>
+        <div className="Todo-List">
+          <ul>
+            <li>
+              <input type="checkbox" /> Create Static UI
+            </li>
+            <li>
+              <input type="checkbox" /> Create Initial State
+            </li>
+            <li>
+              <input type="checkbox" /> Use State to Render UI
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }
