@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 const TodoItem = ({name, isComplete}) => (
   <li>
@@ -6,7 +7,7 @@ const TodoItem = ({name, isComplete}) => (
   </li>
 )
 
-export default (props) => (
+const TodoList = (props) => console.log('List rendering') || (
   <div className="Todo-List">
     <ul>
       {props.todos.map((todo) => (
@@ -16,3 +17,9 @@ export default (props) => (
     </ul>
   </div>
 );
+
+// hago el connect sin definir primer un "mapStateToProps" --> lo defino directamente como 1er argumento de connect
+// aqui no necesito action functions, por eso no pongo nada como 2do argumento
+export default connect(
+  (state) => ({todos: state.todos})
+)(TodoList)

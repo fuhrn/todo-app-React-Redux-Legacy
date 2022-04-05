@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 import logo from "./logo.svg";
 import "./App.css";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 
 // import { bindActionCreators } from "redux";
-import { updateCurrent } from "./reducers/todo";
+// import { updateCurrent } from "./reducers/todo";
 
 
 class App extends Component {
@@ -19,10 +19,14 @@ class App extends Component {
         </header>
         <div className="Todo-App">
           <TodoForm
-            currentTodo={this.props.currentTodo}
-            changeCurrent={this.props.updateCurrent}
+            // ya no necesito mas pasar por props currentTodo -> pues ese componente ya esta conectado al store
+            // currentTodo={this.props.currentTodo}
+            // tampoco necesito pasar las action functions, pues van via connect en el componente directamente
+            // changeCurrent={this.props.updateCurrent}
           />
-          <TodoList todos={this.props.todos}/>
+          {/* como hago el connect directamente en el component, saco el props */}
+          {/* <TodoList todos={this.props.todos} /> */}
+          <TodoList />
         </div>
       </div>
     );
@@ -33,11 +37,15 @@ class App extends Component {
 
 // en nuestro caso voy a usar todo el state, pero si no puedo hacer (state) => state.todos, por ejemplo
 // sigo recibiendo via props todo como lo venia haciendo antes: state y acciones
-// con connect hago que el store (state y dispatch actions ) se pueda usar en el componente App
-const mapStateToProps = (state) => state
+// con connect hago que el store (state y dispatch actions functions ) se pueda usar en el componente App
+// const mapStateToProps = (state) => state
 
 // se puede usar un mapDispatchToProps shorthand syntax
 // const mapDispatchToProps = (dispatch) => bindActionCreators({ updateCurrent }, dispatch);
-const mapDispatchToProps = { updateCurrent };
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+// const mapDispatchToProps = { updateCurrent };
+// export default connect(mapStateToProps, mapDispatchToProps)(App)
+
+// con sucesivos cambios, movi la conexion a cada componente (para evitar renderizaciones innecesarias)
+// asi que solo exporto App
+export default App
 
