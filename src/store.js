@@ -1,5 +1,11 @@
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+// thunk es un middleware
+import thunk from 'redux-thunk'
 import reducer from './reducers/todo'
 
 //export store
-export default createStore(reducer);
+// con thunk puedo empezar a dispatch asyncronous actions
+export default createStore(
+  reducer,
+  applyMiddleware(thunk)
+);
