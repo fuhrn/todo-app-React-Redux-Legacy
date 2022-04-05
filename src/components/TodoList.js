@@ -1,10 +1,14 @@
 import React, {Component} from "react";
 import { connect } from "react-redux";
-import { fetchTodos } from "../reducers/todo";
+import { fetchTodos, toggleTodo } from "../reducers/todo";
 
-const TodoItem = ({name, isComplete}) => (
+const TodoItem = ({id, name, isComplete, toggleTodo}) => (
   <li>
-    <input type="checkbox" defaultChecked={isComplete} /> {name}
+    <input
+      type="checkbox"
+      checked={isComplete}
+      onChange={() => toggleTodo(id)}
+    /> {name}
   </li>
 )
 
@@ -21,7 +25,10 @@ class TodoList extends Component {
         <ul>
           {this.props.todos.map((todo) => (
             // que piola como usa aqui {...todo} ---> automaticamente se generan los props para TodoItem...
-            <TodoItem key={todo.id} {...todo} />
+            <TodoItem
+              key={todo.id}
+              toggleTodo={this.props.toggleTodo}
+              {...todo} />
           ))}
         </ul>
       </div>
@@ -33,5 +40,5 @@ class TodoList extends Component {
 // aqui no necesito action functions, por eso no pongo nada como 2do argumento
 export default connect(
   (state) => ({ todos: state.todo.todos }),
-  {fetchTodos}
+  {fetchTodos, toggleTodo}
 )(TodoList)
