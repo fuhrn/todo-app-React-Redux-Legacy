@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchTodos, toggleTodo, deleteTodo } from "../reducers/todo";
+import { fetchTodos, toggleTodo, deleteTodo, getVisibleTodos } from "../reducers/todo";
 
 const TodoItem = ({ id, name, isComplete, toggleTodo, deleteTodo }) => (
   <li>
@@ -44,7 +44,7 @@ class TodoList extends Component {
 
 // hago el connect sin definir primer un "mapStateToProps" --> lo defino directamente como 1er argumento de connect
 // aqui no necesito action functions, por eso no pongo nada como 2do argumento
-export default connect((state) => ({ todos: state.todo.todos }), {
+export default connect((state, ownProps) => ({ todos: getVisibleTodos(state.todo.todos, ownProps.filter) }), {
   fetchTodos,
   toggleTodo,
   deleteTodo,

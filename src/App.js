@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {BrowserRouter as Router} from 'react-router-dom'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 // import { connect } from "react-redux";
 import logo from "./logo.svg";
 import "./App.css";
@@ -31,7 +31,9 @@ class App extends Component {
             />
             {/* como hago el connect directamente en el component, saco el props */}
             {/* <TodoList todos={this.props.todos} /> */}
-            <TodoList />
+            <Route path='/:filter?' render={({ match }) => (
+              <TodoList filter={ match.params.filter }/>
+            )} />
             <Footer />
           </div>
         </Router>
