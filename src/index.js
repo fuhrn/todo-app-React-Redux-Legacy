@@ -5,8 +5,7 @@ import {Provider} from 'react-redux'
 import "./index.css";
 import App from "./App";
 import store from "./store";
-import {bindActionCreators} from 'redux'
-import { updateCurrent } from "./reducers/todo";
+
 
 // const state = {
 //   todos: [
@@ -18,7 +17,7 @@ import { updateCurrent } from "./reducers/todo";
 
 
 //const todoChangeHandler = (val) => store.dispatch(updateCurrent(val))  ---> reemplazado por:
-const actions = bindActionCreators({updateCurrent}, store.dispatch)
+
 
 // const render = () => {     ---> no necesito mas el render()
 // const state = store.getState();   ---> <Provider> se encarga de que App tenga acceso al store
@@ -27,7 +26,9 @@ ReactDOM.render(
     <App
       // todos={state.todos}    ---> NO necesito MAS pasar por props al state
       //currentTodo={state.currentTodo}   ---> NO necesito MAS pasar por props al state
-      changeCurrent={actions.updateCurrent}
+
+      // no necesito mas pasar las acciones via Props
+      // changeCurrent={actions.updateCurrent}
     /> 
   </Provider>,
     document.getElementById("root")
