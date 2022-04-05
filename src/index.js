@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
+// Provider component nos permite get the store and subscribe to state changes
+import {Provider} from 'react-redux'
 import "./index.css";
 import App from "./App";
 import store from "./store";
@@ -18,25 +20,27 @@ import { updateCurrent } from "./reducers/todo";
 //const todoChangeHandler = (val) => store.dispatch(updateCurrent(val))  ---> reemplazado por:
 const actions = bindActionCreators({updateCurrent}, store.dispatch)
 
-const render = () => {
-  const state = store.getState();
-  ReactDOM.render(
-    // <React.StrictMode>
+// const render = () => {     ---> no necesito mas el render()
+// const state = store.getState();   ---> <Provider> se encarga de que App tenga acceso al store
+ReactDOM.render(
+  <Provider store={store}>
     <App
-      todos={state.todos}
-      currentTodo={state.currentTodo}
+      // todos={state.todos}    ---> NO necesito MAS pasar por props al state
+      //currentTodo={state.currentTodo}   ---> NO necesito MAS pasar por props al state
       changeCurrent={actions.updateCurrent}
-    />, //{...state} es el [] de todos, currentTodo, etc
-    // </React.StrictMode>,
+    /> 
+  </Provider>,
     document.getElementById("root")
-  );
-};
+);
+// };
 
 // renderiza App con los todos que estan en el state al momento de cargar por primera vez la app
-render()
+// <Provider> se encargara ahora del renderizado ante cambios en el store
+//render()
 
 // cualquier modificacion en el state --> genera un nuevo renderizado de la app
-store.subscribe(render)
+// <Provider> se encarga del subscription a cambios en el store
+//store.subscribe(render)
 
 // ejemplo
 // setTimeout(() => {

@@ -1,4 +1,5 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import logo from "./logo.svg";
 import "./App.css";
 import TodoForm from "./components/TodoForm";
@@ -25,4 +26,10 @@ class App extends Component {
   }
 }
 
-export default App;
+//export default App;
+
+// en nuestro caso voy a usar todo el state, pero si no puedo hacer (state) => state.todos, por ejemplo
+// sigo recibiendo via props todo como lo venia haciendo antes: state y acciones
+const mapStateToProps = (state) => state
+const ConnectedApp = connect(mapStateToProps)(App)
+export default ConnectedApp
