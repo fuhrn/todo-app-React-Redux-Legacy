@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import store from './store';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import store from "./store";
 
 // const state = {
 //   todos: [
@@ -12,14 +12,23 @@ import store from './store';
 //   ]
 // };
 
-const state = store.getState()
-
-ReactDOM.render(
-  // <React.StrictMode>
+const render = () => {
+  const state = store.getState();
+  ReactDOM.render(
+    // <React.StrictMode>
     <App {...state} />, //{...state} es el [] de todos
-  // </React.StrictMode>,
-  document.getElementById('root')
-);
+    // </React.StrictMode>,
+    document.getElementById("root")
+  );
+};
 
+// renderiza App con los todos que estan en el state al momento de cargar por primera vez la app
+render()
 
+// cualquier modificacion en el state --> genera un nuevo renderizado de la app
+store.subscribe(render)
 
+// ejemplo
+setTimeout(() => {
+  store.dispatch({type: 'TODO_ADD', payload: {id: 4, name: 'New Todo', isComplete: false}})
+}, 1000)
