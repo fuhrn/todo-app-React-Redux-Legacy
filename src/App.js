@@ -4,6 +4,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
+import Message from "./components/Message";
 
 // import { bindActionCreators } from "redux";
 // import { updateCurrent } from "./reducers/todo";
@@ -18,6 +19,7 @@ class App extends Component {
           <p>React Todo App with Redux - Legacy</p>
         </header>
         <div className="Todo-App">
+          <Message />
           <TodoForm
             // ya no necesito mas pasar por props currentTodo -> pues ese componente ya esta conectado al store
             // currentTodo={this.props.currentTodo}
