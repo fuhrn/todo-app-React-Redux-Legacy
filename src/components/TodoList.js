@@ -32,6 +32,6 @@ class TodoList extends Component {
 // hago el connect sin definir primer un "mapStateToProps" --> lo defino directamente como 1er argumento de connect
 // aqui no necesito action functions, por eso no pongo nada como 2do argumento
 export default connect(
-  (state) => ({ todos: state.todos }),
+  (state) => ({ todos: state.todo.todos }),
   {fetchTodos}
 )(TodoList)
