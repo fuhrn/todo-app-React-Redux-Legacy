@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import {BrowserRouter as Router} from 'react-router-dom'
 // import { connect } from "react-redux";
 import logo from "./logo.svg";
 import "./App.css";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 import Message from "./components/Message";
+import Footer from "./components/Footer";
 
 // import { bindActionCreators } from "redux";
 // import { updateCurrent } from "./reducers/todo";
@@ -18,18 +20,21 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <p>React Todo App with Redux - Legacy</p>
         </header>
-        <div className="Todo-App">
-          <Message />
-          <TodoForm
+        <Router>
+          <div className="Todo-App">
+            <Message />
+            <TodoForm
             // ya no necesito mas pasar por props currentTodo -> pues ese componente ya esta conectado al store
             // currentTodo={this.props.currentTodo}
             // tampoco necesito pasar las action functions, pues van via connect en el componente directamente
             // changeCurrent={this.props.updateCurrent}
-          />
-          {/* como hago el connect directamente en el component, saco el props */}
-          {/* <TodoList todos={this.props.todos} /> */}
-          <TodoList />
-        </div>
+            />
+            {/* como hago el connect directamente en el component, saco el props */}
+            {/* <TodoList todos={this.props.todos} /> */}
+            <TodoList />
+            <Footer />
+          </div>
+        </Router>
       </div>
     );
   }

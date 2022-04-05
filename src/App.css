@@ -68,9 +68,9 @@ li {
   top: 310px;
 }
 
-li span.delete-item {
+/* li span.delete-item {
   visibility: hidden;
-}
+} */
 
 span.delete-item button {
   background: none;
@@ -78,10 +78,18 @@ span.delete-item button {
   font-size: 1em;
   font-weight: bold;
   text-decoration: none;
+  color: lightgray;
+}
+
+/* li:hover span.delete-item {
+  visibility: visible;
+} */
+
+li:hover span.delete-item button{
   color: red;
 }
 
-li:hover span.delete-item {
-  visibility: visible;
-  
+a {
+  padding-left: 3px;
+  padding-right: 3px;
 }
