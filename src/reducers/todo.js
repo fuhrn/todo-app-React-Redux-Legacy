@@ -14,8 +14,8 @@ const initState = {
 // pasamos los type actions a constants para evitar problemas de tipeo,
 // pues contaremos con la ayuda del IDE para saber si estoy tipeando bien
 // y si lo escribo mal, en vez de no funcionar, la app failed to compile
-const TODO_ADD = 'TODO_ADD'
-const TODOS_LOAD = 'TODOS_LOAD'
+export const TODO_ADD = 'TODO_ADD'
+export const TODOS_LOAD = 'TODOS_LOAD'
 const CURRENT_UPDATE = 'CURRENT_UPDATE'
 
 
@@ -29,6 +29,7 @@ export const addTodo = (todo) => ({ type: TODO_ADD, payload: todo });
 // quien llama a fetchTodos es TodoList en su hook componentDidMount()
 export const fetchTodos = () => {
   return (dispatch) => {
+    dispatch(showMessage('Loading Todos...'))
     getTodos().then(todos => dispatch(loadTodos(todos)))
   }
 }
