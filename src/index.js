@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import store from "./store";
+import { updateCurrent } from "./reducers/todo";
 
 // const state = {
 //   todos: [
@@ -13,7 +14,7 @@ import store from "./store";
 // };
 
 
-const todoChangeHandler = (val) => store.dispatch({type: 'CURRENT_UPDATE', payload: val})
+const todoChangeHandler = (val) => store.dispatch(updateCurrent(val))
 
 const render = () => {
   const state = store.getState();
