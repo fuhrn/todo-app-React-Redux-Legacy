@@ -6,44 +6,14 @@
       "isComplete": true
     },
     {
-      "id": 2,
-      "name": "Start Server",
-      "isComplete": false
-    },
-    {
-      "id": 3,
-      "name": "Connect to Server",
-      "isComplete": true
-    },
-    {
-      "id": 4,
-      "name": "Setup Fetch",
-      "isComplete": true
-    },
-    {
-      "name": "new todo",
-      "isComplete": false,
-      "id": 5
-    },
-    {
-      "name": "another todo",
-      "isComplete": false,
-      "id": 6
-    },
-    {
       "name": "nuevo todo",
       "isComplete": false,
       "id": 7
     },
     {
-      "name": "new todo",
+      "name": "nuevo todo prueba",
       "isComplete": false,
       "id": 8
-    },
-    {
-      "name": "a ver si funciona",
-      "isComplete": false,
-      "id": 9
     }
   ]
 }
