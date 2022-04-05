@@ -1,4 +1,4 @@
-import { getTodos } from "../lib/todoServices";
+import { getTodos, createTodo } from "../lib/todoServices";
 
 const initState = {
   // todos: [
@@ -17,11 +17,13 @@ const TODO_ADD = 'TODO_ADD'
 const TODOS_LOAD = 'TODOS_LOAD'
 const CURRENT_UPDATE = 'CURRENT_UPDATE'
 
-// action creator function: retorno un objeto
+
+// action creator functions --> retorno un objeto
 export const updateCurrent = (val) => ({ type: CURRENT_UPDATE, payload: val })
 export const loadTodos = (todos) => ({ type: TODOS_LOAD, payload: todos });
+export const addTodo = (todo) => ({ type: TODO_ADD, payload: todo });
 
-// vamos a crear un nuevo action creator para traer los todos del servidor
+// vamos a crear un nuevo action creator para trabajar con la API 
 // con thunk voy a retornar una function. Luego lo aplico a un action creator 'loadTodos'
 // quien llama a fetchTodos es TodoList en su hook componentDidMount()
 export const fetchTodos = () => {
@@ -29,12 +31,19 @@ export const fetchTodos = () => {
     getTodos().then(todos => dispatch(loadTodos(todos)))
   }
 }
+export const saveTodo = (name) => {
+  return (dispatch) => {
+    createTodo(name).then(res => dispatch(addTodo(res)));
+  };
+};
+
+
 
 // export reducer
 export default (state = initState, action) => {
   switch (action.type) {
     case TODO_ADD:
-      return { ...state, todos: state.todos.concat(action.payload) };
+      return { ...state, currentTodo: '', todos: state.todos.concat(action.payload) };
     case TODOS_LOAD:
       return { ...state, todos: action.payload }
     case CURRENT_UPDATE:

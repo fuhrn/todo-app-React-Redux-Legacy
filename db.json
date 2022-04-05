@@ -19,6 +19,16 @@
       "id": 4,
       "name": "Setup Fetch",
       "isComplete": false
+    },
+    {
+      "name": "new todo",
+      "isComplete": false,
+      "id": 5
+    },
+    {
+      "name": "another todo",
+      "isComplete": false,
+      "id": 6
     }
   ]
 }
