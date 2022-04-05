@@ -12,11 +12,18 @@ import store from "./store";
 //   ]
 // };
 
+
+const todoChangeHandler = (val) => store.dispatch({type: 'CURRENT_UPDATE', payload: val})
+
 const render = () => {
   const state = store.getState();
   ReactDOM.render(
     // <React.StrictMode>
-    <App {...state} />, //{...state} es el [] de todos
+    <App
+      todos={state.todos}
+      currentTodo={state.currentTodo}
+      changeCurrent={todoChangeHandler}
+    />, //{...state} es el [] de todos, currentTodo, etc
     // </React.StrictMode>,
     document.getElementById("root")
   );
@@ -29,6 +36,6 @@ render()
 store.subscribe(render)
 
 // ejemplo
-setTimeout(() => {
-  store.dispatch({type: 'TODO_ADD', payload: {id: 4, name: 'New Todo', isComplete: false}})
-}, 1000)
+// setTimeout(() => {
+//   store.dispatch({type: 'TODO_ADD', payload: {id: 4, name: 'New Todo', isComplete: false}})
+// }, 1000)
