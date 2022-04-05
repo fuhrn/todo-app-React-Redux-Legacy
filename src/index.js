@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import store from "./store";
+import {bindActionCreators} from 'redux'
 import { updateCurrent } from "./reducers/todo";
 
 // const state = {
@@ -14,7 +15,8 @@ import { updateCurrent } from "./reducers/todo";
 // };
 
 
-const todoChangeHandler = (val) => store.dispatch(updateCurrent(val))
+//const todoChangeHandler = (val) => store.dispatch(updateCurrent(val))  ---> reemplazado por:
+const actions = bindActionCreators({updateCurrent}, store.dispatch)
 
 const render = () => {
   const state = store.getState();
@@ -23,7 +25,7 @@ const render = () => {
     <App
       todos={state.todos}
       currentTodo={state.currentTodo}
-      changeCurrent={todoChangeHandler}
+      changeCurrent={actions.updateCurrent}
     />, //{...state} es el [] de todos, currentTodo, etc
     // </React.StrictMode>,
     document.getElementById("root")
